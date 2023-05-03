@@ -13,21 +13,32 @@ private:
 }
 class myLinkedList {
 public:
-	myLinkedList() {}
-	myLinkedList(std::string data, Node* rhs) {
-		Node* node = new Node();
-		node->data = rhs->data;
+	myLinkedList() {
+	
 	}
-	virtual ~myLinkedList() {}
-	void Insert(Node* node) {
-
+	virtual ~myLinkedList() {
+	
 	}
-	void Delete(Node* node) {
+	void Insert(std::string data) {
+		if (this->size == 0)
+		{
+			Node* node = new Node();
+			node->data = data;
+			// this is the first node, hence it's prev and next pointers are still null. This is a doubley-linked list.
+		}
+		else
+		{
+			//traverse down the LL datastructure, findthe end, then create and attach the new desired node.
+		}
+	}
+	void Delete(std::string data) {
 
 	}
 	void printMyLinkedList() { // print the LL
 
 	}
 private:
+	Node* mod = nullptr;
+	int size = 0;
 	
 };
