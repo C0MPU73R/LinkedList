@@ -37,13 +37,15 @@ public:
 		}
 	}
 	void Delete(std::string data) {
-		modifier = head;
+		this->modifier = this->head;
 		while (modifier != nullptr) {
 			if (modifier->data == data) {
-
+				modifier->prev = modifier->prev->prev;
+				modifier->next = modifier->next->next;
+				delete modifier;
+				modifier = nullptr;
 			}
-			else
-			{
+			else {
 				modifier = modifier->next;
 			}
 		}
