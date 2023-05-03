@@ -20,15 +20,19 @@ public:
 	
 	}
 	void Insert(std::string data) {
-		if (this->size == 0)
+		if (this->head == nullptr)
 		{
 			Node* node = new Node();
 			node->data = data;
 			// this is the first node, hence it's prev and next pointers are still null. This is a doubley-linked list.
+			++this->size;
+			head = node; //redirect head to point towards this this new node. This node is now the head. It's
+			// tail is still pointing to null because we only have one node here.
 		}
 		else
 		{
 			//traverse down the LL datastructure, findthe end, then create and attach the new desired node.
+
 		}
 	}
 	void Delete(std::string data) {
@@ -38,7 +42,8 @@ public:
 
 	}
 private:
-	Node* mod = nullptr;
+	Node* head = nullptr;
+	Node* tail = nullptr;
 	int size = 0;
 	
 };
