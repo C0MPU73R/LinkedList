@@ -13,10 +13,8 @@ public:
 class myLinkedList {
 public:
 	myLinkedList() {
-	
 	}
 	virtual ~myLinkedList() {
-	
 	}
 	void Insert(std::string data) {
 		if (this->head == nullptr) {
