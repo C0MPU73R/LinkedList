@@ -18,6 +18,7 @@ public:
 		Node* node = new Node();
 		node->data = rhs->data;
 	}
+	virtual ~myLinkedList() {}
 	void Insert(Node* node) {
 
 	}
