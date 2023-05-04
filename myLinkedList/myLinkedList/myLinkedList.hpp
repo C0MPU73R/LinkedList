@@ -9,7 +9,7 @@ public:
 	std::string data;
 	Node* prev = nullptr;
 	Node* next = nullptr;
-}
+};
 class myLinkedList {
 public:
 	myLinkedList() {
@@ -18,7 +18,7 @@ public:
 	}
 	void Insert(std::string data) {
 		if (this->head == nullptr) {
-			Node* node = new Node();
+			Node* node = new Node;
 			node->data = data;
 			// this is the first node, hence it's prev and next pointers are still null. This is a doubley-linked list.
 			++this->size;
@@ -27,7 +27,7 @@ public:
 		}
 		else {
 			//Head is not pointing to null hence it has to be pointing to its head node. account for this.
-			Node* node = new Node();
+			Node* node = new Node;
 			node->data = data;
 			node->prev = this->head;
 		}
