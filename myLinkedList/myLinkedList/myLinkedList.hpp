@@ -12,16 +12,18 @@ public:
 };
 class myLinkedList {
 public:
-	myLinkedList() {
+	myLinkedList() { //construction
 	}
-	virtual ~myLinkedList() {
+	virtual ~myLinkedList() { // destruction, proper clean-up of heap objs.
 	}
 	void Insert(std::string data) {
-		Node* node = nullptr;
-		this->modifier = this->head;
-		if (modifier == nullptr) {
-			node = new Node;
+		Node* node = nullptr; // for initial creation
+		this->modifier = this->head; // set mod to head for checks.
+		if (modifier == nullptr) { // check if head was still null, to which this would mean an empty LL.
+			node = new Node; // it is, so create a new node, this one will be head.
 			node->data = data;
+			this->head = node; // now have a head
+			this->modifier = nullptr; // put mod back to null for later use.
 		}
 		else {
 			for (int i = 0; i < this->size; ++i) {
