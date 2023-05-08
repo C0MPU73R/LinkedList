@@ -18,26 +18,25 @@ public:
 	}
 	void Insert(std::string data) {
 		Node* node = nullptr; // for initial creation
-		this->modifier = this->head; // set mod to head for checks.
-		if (modifier == nullptr) { // check if head was still null, to which this would mean an empty LL.
+		if (head == nullptr) { // explicitly check head first
 			node = new Node; // it is, so create a new node, this one will be head.
 			node->data = data;
 			this->head = node; // now have a head
-			this->modifier = nullptr; // put mod back to null for later use.
-		}
-		else {
-			for (int i = 0; i < this->size; ++i) {
-				if (modifier != nullptr) {
-					node = new Node;
-					node->data = data;
-					if (node->prev != nullptr) {
-						node->prev = node->prev->prev;
-					}
-				}
-				// else: you hit the nullptr, aka the end of the list
-			}
 			++this->size;
 		}
+		else { // else: head is indeed not null, hence check the rest of the possible LL.
+			this->modifier = this->head->next; // point at head's next
+			for (int i = 0; i < this->size; ++i) {
+				if (modifier == nullptr) { // if mod is indeed null, add a new node and wire it in
+					node = new Node;
+					node->data = data;
+					node->prev = this->modifier; // direct node's prev to the prev node. node's next is set by default to null.
+				}
+				modifier = modifier->next; // point to possible next node.
+			}
+			++this->size; // inc size of node list.
+		}
+		this->modifier = nullptr; //done with the op, set mod back to null
 	}
 	void Delete(std::string data) {
 		this->modifier = this->head;
