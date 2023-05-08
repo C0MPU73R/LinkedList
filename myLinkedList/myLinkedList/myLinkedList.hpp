@@ -25,16 +25,17 @@ public:
 			++this->size;
 		}
 		else { // else: head is indeed not null, hence check the rest of the possible LL.
-			this->modifier = this->head->next; // point at head's next
+			this->modifier = this->head->next; // We know that head exists, try and direct it's next to a possible next node.
 			for (int i = 0; i < this->size; ++i) {
-				if (modifier == nullptr) { // if mod is indeed null, add a new node and wire it in
+				if (this->modifier == nullptr) { // if mod is indeed null, add a new node and wire it in
 					node = new Node;
 					node->data = data;
-					node->prev = this->modifier; // direct node's prev to the prev node. node's next is set by default to null.
+					node->prev = this->modifier->prev; // direct new node's prev to the prev node in the list.  This must exist becuase we know we have at least, a head of the LL
+					// and node's next is set by default to null.
 				}
-				modifier = modifier->next; // point to possible next node.
+				modifier = modifier->next; // move on and point to possible next node.
 			}
-			++this->size; // inc size of node list.
+			++this->size; // inc size of node list everytime that a node is inserted.
 		}
 		this->modifier = nullptr; //done with the op, set mod back to null
 	}
