@@ -15,29 +15,35 @@ public:
 	myLinkedList() { //construction
 	}
 	virtual ~myLinkedList() { // destruction, proper clean-up of heap objs.
+		modifier = tail;
+		while (modifier != nullptr) {
+			delete modifier;
+			modifier = modifier->prev
+		}
+		head = nullptr;
+		tail = nullptr;
+		modifier = nullptr;
 	}
-	void Insert(std::string data) {
+	void Insert(std::string data, int pos = this->size - 1) {
 		Node* node = nullptr; // for initial creation
 		if (this->head == nullptr) { // explicitly check head first
 			node = new Node; // it is, so create a new node, this one will be head.
 			node->data = data;
 			this->head = node; // now have a head
+			this -> tail = node; // now have a tail, as this is a single node in a single LL.
 			++this->size;
 		}
-		else { // else: head is indeed not null, hence check the rest of the possible LL.
-			this->modifier = this->head->next; // We know that head exists, try and direct it's next to a possible next node.
-			for (int i = 0; i < this->size; ++i) {
-				if (this->modifier == nullptr) { // if mod is indeed null, add a new node and wire it in
-					node = new Node;
-					node->data = data;
-					node->prev = this->modifier->prev; // direct new node's prev to the prev node in the list.  This must exist becuase we know we have at least, a head of the LL
-					// and node's next is set by default to null.
-				}
-				modifier = modifier->next; // move on and point to possible next node.
-			}
-			++this->size; // inc size of node list everytime that a node is inserted.
+		else if ( this->head != nullptr && pos != this->size - 1) { // this is an insertion to somewhere in the LL that is not the beginning or the end.
+			
 		}
-		this->modifier = nullptr; //done with the op, set mod back to null
+		else { // add it directly to the end of the list without doing an uneccessary traversal.
+			node = new Node;
+			node->data = data;
+			modifier = node;
+			modifier->prev = tail; //connect the node to the end of the list using tail
+			tail = modifier;
+			modifier = nullptr;
+		}
 	}
 	void Delete(std::string data) {
 		this->modifier = this->head;
@@ -57,8 +63,8 @@ public:
 	}
 private:
 	Node* head = nullptr;
-	Node* tail = nullptr;
-	Node* modifier = nullptr;
+	Node* tail = nullptr; //The end of the LL. Always changing depending on insertions or deletions.
+	Node* modifier = nullptr; // modifier is a temporary node that acts as an insertion or deletion operator, analyzing other nodes as well as LLs.
 	int size = 0;
 	
 };
