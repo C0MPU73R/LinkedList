@@ -18,7 +18,7 @@ public:
 	}
 	void Insert(std::string data) {
 		Node* node = nullptr; // for initial creation
-		if (head == nullptr) { // explicitly check head first
+		if (this->head == nullptr) { // explicitly check head first
 			node = new Node; // it is, so create a new node, this one will be head.
 			node->data = data;
 			this->head = node; // now have a head
