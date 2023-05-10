@@ -33,15 +33,31 @@ public:
 			this -> tail = node; // now have a tail, as this is a single node in the single LL. The head and tail are the same at this point.
 			++this->size; // Increase  the size of the LL as we now have an element in the data structure.
 		}
-		else if ( this->head != nullptr && pos != this->size - 1) { // this is an insertion to somewhere in the LL that is not the beginning or the end.
+		else if ( this->head != nullptr &&  && pos < size && pos != this->size - 1) { // this is an insertion to somewhere in the LL that is not the beginning or the end.
 			// else; if head is indeed not null, aka it is pointinng to something AND this is NOT the last node in the LL, go ahead and insert
 			//the new node here, keeping in mind that we will have to attach it's prev to the previous element and its next to the next element,
 			//if it exists that is. We then need to look at the nodes before and after this new node to adjust their own pointers so we do not
 			// 'short-circuit' this new node. Aka, we actually have a one-to-one list that is doubley linked, where there are no other strange loops 
 			//to other nodes in the LL.
-
-
-
+			
+			if (pos == 0) {
+				node = new Node; // create the node
+				node->data = data; //copy over the data
+				node->next = this->head; // point this 'new head's next to the old one.
+				this->head->prev = node; //It was null by default, but now points to the "to be" new head.
+				this->head = node; // point head to this new node, making it the actual head. 
+				//prev is already accounted for and is null.
+			}
+			else {
+				this->modifier = this->head; //Start at head and work our way to the proper spot. Right now, use the first position as position 0.
+				for (int i = 0; i < size; ++i) { // traverse the entire LL of size "size";
+					if (i == pos) { // if you hit the desired position, do something here:
+						node = new Node;
+						node->data = data;
+						//Created node, prepare for insertion.
+					}
+				}
+			}
 		}
 		else { // add it directly to the end of the list without doing an uneccessary traversal.
 			node = new Node;
