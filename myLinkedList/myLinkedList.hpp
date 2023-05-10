@@ -7,6 +7,7 @@
 struct Node {
 public:
 	std::string data;
+	int position;
 	Node* prev = nullptr;
 	Node* next = nullptr;
 };
@@ -25,13 +26,15 @@ public:
 		modifier = nullptr;
 	}
 	void Insert(std::string data, int pos = this->size - 1) {
-		Node* node = nullptr; // for initial creation
+		Node* node = nullptr; // for initial creation. The LL has not been created at all yet.
 		if (this->head == nullptr) { // explicitly check head first
 			node = new Node; // it is, so create a new node, this one will be head.
 			node->data = data; // node is done being created. Go ahead and attach head to it (point head to it)
+			node->position = 0; // Hardcode the very first instance of head to have a position of zero. All other created nodes will rely on this position of this node as a reference point.
 			this->head = node; // now have a head
 			this -> tail = node; // now have a tail, as this is a single node in the single LL. The head and tail are the same at this point.
 			++this->size; // Increase  the size of the LL as we now have an element in the data structure.
+			//This is the very first head, hence the position is set by default to zero.
 		}
 		else if ( this->head != nullptr &&  && pos < size && pos != this->size - 1) { // this is an insertion to somewhere in the LL that is not the beginning or the end.
 			// else; if head is indeed not null, aka it is pointinng to something AND this is NOT the last node in the LL, go ahead and insert
@@ -70,6 +73,7 @@ public:
 			node->data = data;
 			modifier = node;
 			modifier->prev = tail; //connect the node to the end of the list using tail. Tail must always be updating in other branches to reflect this.
+			modifier->position = modifier->prev->position++;
 			tail = modifier;
 			modifier = nullptr;
 		}
