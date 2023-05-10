@@ -40,7 +40,7 @@ public:
 			// 'short-circuit' this new node. Aka, we actually have a one-to-one list that is doubley linked, where there are no other strange loops 
 			//to other nodes in the LL.
 			
-			if (pos == 0) {
+			if (pos == 0) { // Condition if we want to insert this new node as the new head of the LL
 				node = new Node; // create the node
 				node->data = data; //copy over the data
 				node->next = this->head; // point this 'new head's next to the old one.
