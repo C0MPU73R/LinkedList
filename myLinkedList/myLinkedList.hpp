@@ -43,18 +43,24 @@ public:
 			if (pos == 0) { // Condition if we want to insert this new node as the new head of the LL
 				node = new Node; // create the node
 				node->data = data; //copy over the data
-				node->next = this->head; // point this 'new head's next to the old one.
+				node->next = this->head; // point this 'new head's next to the old one. The 'old head' is already pointing to the start of the LL
 				this->head->prev = node; //It was null by default, but now points to the "to be" new head.
 				this->head = node; // point head to this new node, making it the actual head. 
 				//prev is already accounted for and is null.
 			}
 			else {
-				this->modifier = this->head; //Start at head and work our way to the proper spot. Right now, use the first position as position 0.
 				for (int i = 0; i < size; ++i) { // traverse the entire LL of size "size";
 					if (i == pos) { // if you hit the desired position, do something here:
+						int j = i; // TODO: We need some sort of 'position' attribute to accomplish this. Perhaps creating one in the Node struct,
+						//where is can be accessed via indexing '[]'.
+
+						
+						
+						
 						node = new Node;
 						node->data = data;
 						//Created node, prepare for insertion.
+
 					}
 				}
 			}
