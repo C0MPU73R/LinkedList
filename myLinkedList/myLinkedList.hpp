@@ -78,6 +78,7 @@ public:
 		}
 	}
 	//TODO: Needs review.
+	//Deletes a specific node in the LL and rewires the adjacent nodes of the deleted one together. Deallocates used mem for deleted node.
 	void Delete(std::string data) {
 		this->modifier = this->head;
 		while (modifier != nullptr) {
