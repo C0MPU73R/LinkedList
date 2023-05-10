@@ -7,7 +7,6 @@
 struct Node {
 public:
 	std::string data;
-	int position;
 	Node* prev = nullptr;
 	Node* next = nullptr;
 };
@@ -16,21 +15,24 @@ public:
 	myLinkedList() { //construction
 	}
 	virtual ~myLinkedList() { // destruction, proper clean-up of heap objs.
-		modifier = tail;
-		while (modifier != nullptr) {
-			delete modifier;
-			modifier = modifier->prev
+		if (this->head != nullptr) { //Make sure that a LL is indeed created.
+			this->modifier = this->head;
+			if (head->next == nullptr) {
+				delete head;
+			}
+			else {
+				do {
+					modifier = head->next;
+					//TODO
+				}
+			}
 		}
-		head = nullptr;
-		tail = nullptr;
-		modifier = nullptr;
 	}
 	void Insert(std::string data, int pos = this->size - 1) {
 		Node* node = nullptr; // for initial creation. The LL has not been created at all yet.
 		if (this->head == nullptr) { // explicitly check head first
 			node = new Node; // it is, so create a new node, this one will be head.
 			node->data = data; // node is done being created. Go ahead and attach head to it (point head to it)
-			node->position = 0; // Hardcode the very first instance of head to have a position of zero. All other created nodes will rely on this position of this node as a reference point.
 			this->head = node; // now have a head
 			this -> tail = node; // now have a tail, as this is a single node in the single LL. The head and tail are the same at this point.
 			++this->size; // Increase  the size of the LL as we now have an element in the data structure.
@@ -57,9 +59,6 @@ public:
 						int j = i; // TODO: We need some sort of 'position' attribute to accomplish this. Perhaps creating one in the Node struct,
 						//where is can be accessed via indexing '[]'.
 
-						
-						
-						
 						node = new Node;
 						node->data = data;
 						//Created node, prepare for insertion.
