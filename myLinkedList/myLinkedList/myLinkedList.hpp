@@ -39,16 +39,20 @@ public:
 			//if it exists that is. We then need to look at the nodes before and after this new node to adjust their own pointers so we do not
 			// 'short-circuit' this new node. Aka, we actually have a one-to-one list that is doubley linked, where there are no other strange loops 
 			//to other nodes in the LL.
+
+
+
 		}
 		else { // add it directly to the end of the list without doing an uneccessary traversal.
 			node = new Node;
 			node->data = data;
 			modifier = node;
-			modifier->prev = tail; //connect the node to the end of the list using tail
+			modifier->prev = tail; //connect the node to the end of the list using tail. Tail must always be updating in other branches to reflect this.
 			tail = modifier;
 			modifier = nullptr;
 		}
 	}
+	//TODO: Needs review.
 	void Delete(std::string data) {
 		this->modifier = this->head;
 		while (modifier != nullptr) {
@@ -64,6 +68,7 @@ public:
 		}
 	}
 	void printMyLinkedList() { // print the LL
+		//Start at head. Print the data of each node until the next node is null.
 	}
 private:
 	Node* head = nullptr;
