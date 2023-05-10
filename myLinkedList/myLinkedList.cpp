@@ -8,12 +8,18 @@ myLinkedList::~myLinkedList() { // destruction, proper clean-up of heap objs.
 			delete head;
 		}
 		else {
+			modifier = head->next;
 			do {
-				modifier = head->next;
-				//TODO
-			}
+				temp = modifier;
+				modifier = modifier->next;
+				delete temp;
+			} while (modifier != nullptr);
 		}
 	}
+	this->head = nullptr;
+	this->tail = nullptr;
+	this->modifier = nullptr;
+	this->temp = nullptr;
 }
 void myLinkedList::Insert(std::string data, int pos = this->size - 1) {
 	Node* node = nullptr; // for initial creation. The LL has not been created at all yet.
@@ -80,6 +86,6 @@ void myLinkedList::Delete(std::string data) {
 		}
 	}
 }
-void myLinkedList::printMyLinkedList() { // print the LL
+void myLinkedList::Print() { // print the LL
 	//Start at head. Print the data of each node until the next node is null.
 }
