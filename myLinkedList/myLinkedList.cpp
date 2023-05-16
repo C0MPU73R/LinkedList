@@ -1,3 +1,7 @@
+/*
+@filename: myLinkedList.cpp
+@author: C0MPU73R
+*/
 #include "myLinkedList.h"
 myLinkedList::myLinkedList() { //construction
 }
