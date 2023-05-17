@@ -48,21 +48,30 @@ void LinkedList::Insert(std::string data, int pos = this->size - 1) { // Allow c
 			node = new Node; // create the node
 			node->data = data; //copy over the data
 			node->next = this->head; // point this 'new head's next to the old one. The 'old head' is already pointing to the start of the LL
+			node->position = 0; // This node will become the new head, give it the new position for consistent indexing
 			this->head->prev = node; //It was null by default, but now points to the "to be" new head.
+			++this->head->position; // Put the old head's position one above the new head. This is now the second node in the data structure.
 			this->head = node; // point head to this new node, making it the actual head. 
 			//prev is already accounted for and is null.
 		}
-		else {
-			for (int i = 0; i < size - 2; ++i) { // traverse the entire LL of size "size minus 2" because insertion to the end of the list will be done separately, more efficiently, as it is a more common operation.;
-				if (i == pos) { // if you hit the desired position, do something here:
-					int j = i; // TODO: We need some sort of 'position' attribute to accomplish this. Perhaps creating one in the Node struct,
-					//where is can be accessed via indexing '[]'.
-					node = new Node;
-					node->data = data;
-					//Created node, prepare for insertion.
+		else { //Insert the node at the desired position and give it the proper position int. Decrease the previous
+			this->modifier = this->head;
+			do {
+				this->modifier = this->modifier->next;
+			} while (this->modifier->position != pos);
+			node = new Node;
+			node->data = data;
+			node->position = pos;
+			this->modifier->position--;
+			this->modifier->prev->next = node;
+			node->next = this->modifier;
+			while (this->modifier->next != nullptr) {
+				this->modifier->position++;
+				this->modifier = this->modifier->next;
 
-				}
 			}
+
+			//TODO
 		}
 	}
 	else { // add it directly to the end of the list without doing an uneccessary traversal.
@@ -70,8 +79,9 @@ void LinkedList::Insert(std::string data, int pos = this->size - 1) { // Allow c
 		node->data = data;
 		this->modifier = node;
 		this->modifier->prev = this->tail; //connect the node to the end of the list using tail. Tail must always be updating in other branches to reflect this.
-		this->modifier->position = this->modifier->prev->position++;
+		this->modifier->position = this->modifier->prev->position++; // Increment the position label of this new tail by one based on the previous node's position.
 		this->tail = this->modifier;
+		
 		this->modifier = nullptr;
 	}
 }
