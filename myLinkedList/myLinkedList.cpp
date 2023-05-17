@@ -31,6 +31,7 @@ void myLinkedList::Insert(std::string data, int pos = this->size - 1) { // Allow
 	if (this->head == nullptr) { // explicitly check head first
 		node = new Node; // it is, so create a new node, this one will be head.
 		node->data = data; // node is done being created. Go ahead and attach head to it (point head to it)
+		node->position = 0; //Set the position. Initiaitially start at zero. Will be incremented per node creation with attachment to the LL.
 		this->head = node; // now have a head
 		this->tail = node; // now have a tail, as this is a single node in the single LL. The head and tail are the same at this point.
 		++this->size; // Increase  the size of the LL as we now have an element in the data structure.
@@ -89,7 +90,14 @@ void myLinkedList::Delete(std::string data) {
 			modifier = modifier->next;
 		}
 	}
-}
 void myLinkedList::Print() { // print the LL
 	//Start at head. Print the data of each node until the next node is null.
+	if (this->head != nullptr) {
+		this->modifier = this->head;
+		do {
+			std::cout << this->modifier->data << endl;
+			this->modifier = this->modifier->next;
+		} while (this->modifier->next != nullptr);
+	}
+	this->modifier = nullptr;
 }
