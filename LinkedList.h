@@ -18,6 +18,7 @@ private:
 		Node* prev = nullptr;
 		Node* next = nullptr;
 		int position; // TODO+: Possibly have a postion attrib where the user can use the API to just get the exact node they want by position.
+		// position is just a label for a Node that the user can interact with (from the api pov)
 	};
 
 	Node* head = nullptr;

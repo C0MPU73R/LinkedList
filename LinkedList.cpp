@@ -87,6 +87,7 @@ void LinkedList::Insert(std::string data, int pos = this->size - 1) { // Allow c
 }
 //TODO: Needs review.
 //Deletes a specific node in the LL and rewires the adjacent nodes of the deleted one together. Deallocates used mem for deleted node.
+//TODO: Create functionality for deleting by position as well instead of only by data.
 void LinkedList::Delete(std::string data) {
 	this->modifier = this->head;
 	while (modifier != nullptr) {
