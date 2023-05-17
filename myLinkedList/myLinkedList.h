@@ -17,6 +17,7 @@ private:
 		std::string data;
 		Node* prev = nullptr;
 		Node* next = nullptr;
+		int position; // TODO+: Possibly have a postion attrib where the user can use the API to just get the exact node they want by position.
 	};
 
 	Node* head = nullptr;
