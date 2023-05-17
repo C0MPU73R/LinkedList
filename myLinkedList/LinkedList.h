@@ -1,14 +1,14 @@
 /*
-@filename: myLinkedList.h
+@filename: LinkedList.h
 @author: C0MPU73R
 */
-#ifndef MYLINKEDLIST_H
-#define MYLINKEDLIST_H
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
 #include<string>
-class myLinkedList {
+class LinkedList {
 public:
-	myLinkedList();
-	virtual ~myLinkedList();
+	LinkedList();
+	virtual ~LinkedList();
 	void Insert(std::string data, int pos);
 	void Delete(std::string data);
 	void Print(); const
@@ -26,4 +26,4 @@ private:
 	Node* temp = nullptr; //The purpose of temp is to aide modifier as needed.S
 	int size = 0;
 };
-#endif // !MYLINKEDLIST_H
+#endif // !LINKEDLIST_H

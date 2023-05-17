@@ -1,11 +1,11 @@
 /*
-@filename: myLinkedList.cpp
+@filename: LinkedList.cpp
 @author: C0MPU73R
 */
-#include "myLinkedList.h"
-myLinkedList::myLinkedList() { //construction
+#include "LinkedList.h"
+LinkedList::LinkedList() { //construction
 }
-myLinkedList::~myLinkedList() { // destruction, proper clean-up of heap objs.
+LinkedList::~LinkedList() { // destruction, proper clean-up of heap objs.
 	if (this->head != nullptr) { //Make sure that a LL is indeed created.
 		this->modifier = this->head;
 		if (this->head->next == nullptr) { // Head is the only node due it's next being null, go ahead and delete head, the only LL element.
@@ -26,7 +26,7 @@ myLinkedList::~myLinkedList() { // destruction, proper clean-up of heap objs.
 	this->modifier = nullptr;
 	this->temp = nullptr;
 }
-void myLinkedList::Insert(std::string data, int pos = this->size - 1) { // Allow custom positions for selection of node deletion
+void LinkedList::Insert(std::string data, int pos = this->size - 1) { // Allow custom positions for selection of node deletion
 	Node* node = nullptr; // for initial creation. The LL has not been created at all yet.
 	if (this->head == nullptr) { // explicitly check head first
 		node = new Node; // it is, so create a new node, this one will be head.
@@ -77,7 +77,7 @@ void myLinkedList::Insert(std::string data, int pos = this->size - 1) { // Allow
 }
 //TODO: Needs review.
 //Deletes a specific node in the LL and rewires the adjacent nodes of the deleted one together. Deallocates used mem for deleted node.
-void myLinkedList::Delete(std::string data) {
+void LinkedList::Delete(std::string data) {
 	this->modifier = this->head;
 	while (modifier != nullptr) {
 		if (modifier->data == data) {
@@ -90,7 +90,7 @@ void myLinkedList::Delete(std::string data) {
 			modifier = modifier->next;
 		}
 	}
-void myLinkedList::Print() { // print the LL
+void LinkedList::Print() { // print the LL
 	//Start at head. Print the data of each node until the next node is null.
 	if (this->head != nullptr) {
 		this->modifier = this->head;
