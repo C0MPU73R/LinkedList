@@ -8,12 +8,12 @@ myLinkedList::myLinkedList() { //construction
 myLinkedList::~myLinkedList() { // destruction, proper clean-up of heap objs.
 	if (this->head != nullptr) { //Make sure that a LL is indeed created.
 		this->modifier = this->head;
-		if (head->next == nullptr) {
+		if (this->head->next == nullptr) { // Head is the only node due it's next being null, go ahead and delete head, the only LL element.
 			delete head;
 		}
-		else {
-			modifier = head->next;
-			do {
+		else { // else, head's next was not null, meaning there was more to the list than just 1 node.
+			this->modifier = this->head->next;
+			do { // use the temp pointer to start at where modifier is, and deallocate all of the nodes in the LL. temp is a helper to modifier.
 				temp = modifier;
 				modifier = modifier->next;
 				delete temp;
